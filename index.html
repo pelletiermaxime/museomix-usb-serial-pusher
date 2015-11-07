@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
+</head>
+<body>
+<script>
+var pusher = new Pusher('765ec374ae0a69f4ce44', {
+	wsHost: "0.0.0.0",
+	wsPort: "8080",
+	wssPort: "8080",
+	enabledTransports: ['ws'],
+	log: function(data) {
+		console.log('\t\t', data)
+	}
+});
+var channel = pusher.subscribe('movement');
+channel.bind('movement-detected', function(data) {
+  console.log('An event was triggered with message: ' + data.message);
+});
+</script>
+</body>
+</html>
